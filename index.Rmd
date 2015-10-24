@@ -1,0 +1,73 @@
+---
+title       : Variable Selection with Information Criteria
+subtitle    : Developing Data Products Course Project, Oct 2015
+author      : Jeremy Beck
+job         : 
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : github      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+ext_widgets : {rCharts: libraries/nvd3}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+---
+
+
+## What is the app and why is it useful?
+
+Every data science project hits the point where you investigate which subset of variables you should include in your model. 
+
+If you have a handful of variables, you can easily do exhaustive variable selection.  But if you have hundreds, or thousands, of possible variables to choose from, you may want to find a way to select the best subset to start with. 
+
+This app provides a graphical interface that applies several information criteria metrics to a data set, and assesses how predictive the variables are in relation to a defined target.
+
+--- 
+
+## Minimum Viable Product Overview
+
+The app will provide several pieces of functionality on a toy data set, the mtcars data set. 
+  1. A sidebar to select the relevant target and predictor columns
+  2. A tab to view information criteria metrics to evaluate predictivity of variables
+  3. A tab to view exploratory plots of relevant variables to the target variable
+  4. A tab to view the raw data
+
+--- &twocol
+
+## How the Evaluation is Carried Out
+
+Several methods are available for assessing predictivity of variables: Akaike Information Criteria, Bayesian Information Criteria, and Adjusted R-Squared
+
+In this app, these metrics are applied to a simple univariate linear model for each predictor, according to the example code below. In this case, mpg is the target variable. 
+
+*** =left
+```{r, results='hold'}
+# AIC 
+attach(mtcars)
+AIC(lm(mpg ~ wt))
+AIC(lm(mpg ~ drat))
+# Way to go weight!
+```
+*** =right
+``` {r, results='hold'}
+#Adjusted R-Squared
+attach(mtcars)
+summary(lm(mpg ~ wt))$adj.r.sq
+summary(lm(mpg ~ drat))$adj.r.sq
+# Way to go weight!
+```
+
+
+---
+
+## Slide 4
+
+The app is located on shinyapps.io [here](https://jeremybeck.shinyapps.io/EDA_App)
+
+General Usage of the App can be found by selecting the "Description" tab.  
+
+The code for the shiny app and this presentation can be located at [my github page](https://github.com/jeremybeck/DataProducts_Coursera)
+
+Feel free to play around with the app, and leave any comments!
+
+
+
