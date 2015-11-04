@@ -59,7 +59,7 @@ summary(lm(mpg ~ drat))$adj.r.sq
 
 ---
 
-## Slide 4
+## Get Started - Code and Information
 
 The app is located on shinyapps.io [here](https://jeremybeck.shinyapps.io/EDA_App)
 
